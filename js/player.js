@@ -7,7 +7,7 @@ class Player {
 		this.height = 140;
 		this.x = 250;
 		this.y = height - this.height;
-        this.score = 0
+        this.health = 100;
 	}
 
 	draw() {

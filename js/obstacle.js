@@ -32,12 +32,13 @@ class Obstacle {
         let bottomPlayer = (playerInfo.y + playerInfo.height) 
         let obstacleHeight = (height - this.height)
 		if ((dist(obstacleX, obstacleY, playerX, playerY) < 25) && (bottomPlayer > obstacleHeight) && (this.y > obstacleHeight)) {
-			return false
+			 // here we have a collision
+             game.player.health -= 10;
+             console.log(game.player.health);
+             return true;
+            
 		} else {
-           
-		} // here we have a collision
-        game.player.score += 10;
-        console.log(game.player.score);
-        return true;
+            return false
+		}
 	}
 }

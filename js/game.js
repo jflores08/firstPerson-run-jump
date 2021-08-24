@@ -11,6 +11,7 @@ class Game {
 	setup() {
 		this.background = new Background();
 		this.player = new Player();
+        
 	}
 
 	preloadGame() {
@@ -32,7 +33,7 @@ class Game {
         // console.log(rand);
 		if (frameCount % rand === 0) {
 			this.obstacles.push(new Obstacle(this.shellImage));
-			console.log('hello');
+			console.log('health :' + this.player.health);
 		}
 		// we need to iterate over the obstacles array now and call for every object 
 		// inside the draw function
@@ -51,4 +52,11 @@ class Game {
 			}
 		})
 	}
+    gamefinished(){
+        if (this.player.health > 0){
+            return false
+        } else{
+            return true
+        }       
+    }
 }
