@@ -15,23 +15,25 @@
     <h1>Jump Game
         <!-- <div class = 'health'>Health:</div> <div class = 'health' id = healthNum> 10</div>
          <div class = 'timer' id =timer>Timer :</div><div class = 'timer' id =timerNum>0</div> -->
-        </h1><div id="score">
+        </h1><div class = "score">
             <h2>Score</h2>
-            <p>Health: <span id="healthNum">0</span></p>
-            <p>Timer : <span id="timerNum"> <div>
-                <output id="display-area">00:00:00.000</output>
-            </div>
-            <div>
-                <!-- <button id="toggle-button" onClick="start()">Start</button>
-                <button id="toggle-button" onClick="stop()">Stop</button>
-                <button id="reset-button">Reset</button> -->
-            </div></span></p>
+            <!-- <p  id = 'health'>Health: <span id = "healthNum">0</span></p> -->
+            <p  id = 'timer'>Timer : <span>
+                <output class = "score" id="display-area">00:00:00.000</output>
+            
+            <div class = "buttons">
+                <button id="toggle-button" onClick="this.start()">Start</button>
+                <button id="toggle-button" onClick="this.stop()">Stop</button>
+                <button id="reset-button" onClick="this.reset()">Reset</button>
+            </span><span id="timerNum"> </span></p>
+            <p  id = 'health'>Health: <span id = "healthNum">0</span></p>
           </div><figcaption></figcaption>
     <script src="./js/obstacle.js"></script>
     <script src="./js/background.js"></script>
     <script src="./js/player.js"></script>
+    <script src='./js/stopwatch.js'></script>
     <script src="./js/game.js"></script>
     <script src="./js/main.js"></script>
-    <script src='./js/stopwatch.js'></script>
+    
   </body>
 </html>

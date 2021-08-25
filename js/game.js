@@ -20,7 +20,7 @@ class Game {
 		this.playerImage = loadImage('assets/player/bb8.gif');
 		this.coinImage = loadImage(' assets/coins/tile000.png');
         this.shellImage = loadImage('assets/shells/8bit-red-shell.png');
-        this.stopwatch.start();     
+        // this.stopwatch.start();     
 	}
 
 	draw() {
@@ -28,22 +28,84 @@ class Game {
 		clear();
 		// this draws the background
 		this.background.draw();
-		// this draws the player
-		this.player.draw();
-		// this will add shells to the obstacles array
-        const rand = Math.floor((random()*10000)/7)
-        // console.log(rand);
-		if (frameCount % rand === 0) {
-			this.obstacles.push(new Obstacle(this.shellImage));
-			console.log('health :' + this.player.health);
-		}
-		// we need to iterate over the obstacles array now and call for every object 
-		// inside the draw function
-		this.obstacles.forEach(function (obstacle) {
+
+        //Makes random framecount number
+        const rand = Math.floor((random()*10000)/7)  
+
+        if (frameCount % rand === 0) {
+            this.obstacles.push(new Obstacle(this.shellImage));
+            console.log('health :' + this.player.health);}
+
+        //Timer var
+		const timer = `${round((round(millis()/1000))/60)}` + ':' + `${round(millis()/1000)}` + ':' + `${round(millis())}`
+        //Sets End Game condition
+        if(this.player.health === 0){
+                noLoop();
+                text(`BB8 survived for ${timer}`, 40, height/2.5); 
+        }
+          //Draws Health  and Timer
+            textSize(26);
+            fill(205, 0, 0);
+          
+            text(`Health : ${this.player.health}`, 40, height/5);
+            text( `${timer} seconds have gone by!`, 200, height/5);
+        // textsize(32)
+        // text(this.player.health, 30, 30)
+        // fill(black)
+            document.querySelector('.score #healthNum').innerText = this.player.health;
+
+
 		
-            obstacle.draw();
+            
+            //Makes random framecount number
+            // const rand = Math.floor((random()*10000)/7)
+            
+
+            // this will add shells to the obstacles array     
+            // if (frameCount % rand === 0) {
+			    // this.obstacles.push(new Obstacle(this.shellImage));
+			    // console.log('health :' + this.player.health);
+		        // }
+                // if (this.obstacles = 0){
+                //     this.player.draw();
+                // }else if (obstacle.positionSwitch){
+
+		    // we need to iterate over the obstacles array now and call for every object 
+		        // inside the draw function
+                
+                // if (!obstacle.positionSwitch()){
+                    this.player.draw();
+		            this.obstacles.forEach(function (obstacle) {
+                        obstacle.draw();
+                        
+                        
+                        
+                    
+                    })
+                           
+                    
         
-		})
+		            //     }else{
+                    //     this.player.draw();
+                    // this.obstacles.forEach(function (obstacle) {
+                            
+                    //         obstacle.draw();
+            
+                    //     })
+                    // }
+                    
+                     
+                
+            
+             // this draws the player
+                
+
+
+                // }else{ 
+                    
+            
+                
+            // }
 		this.obstacles = this.obstacles.filter((obstacle) => {
 			// console.log(this);
 			// if we have a collision or the obstacle moves out of the screen 

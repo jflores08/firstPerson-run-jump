@@ -1,13 +1,24 @@
-.health{
+#health{
     color: red;
+    width: 200px;
+    font-size: 30px;
+    font-family: Arial;
+    font-weight: bolder;
+    margin-top: 1%;
+    padding-top: 50px;
 
 }
-#score {
+
+  #timer{
     background-color: rgba(144, 227, 238, 0.8);
     border-radius: 4px;
     font-size: 20px;
     font-family: Arial;
-    width: 100px;
+    width: 200px;
     padding: 2px;
-    margin-left: 0%;
+    margin-left: 75%;
+  }
+  #buttons{
+    padding: 2px;
+    margin-left: 75%;
   }

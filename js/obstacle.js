@@ -16,7 +16,16 @@ class Obstacle {
 		image(this.image, this.x, this.y, this.width, this.height);
         
 	}
+    positionSwitch(){
+        let obstacleJumped = (height - (this.height/2))
+        if (this.obstacle.y > obstacleJumped){
+            return true
+        }else{
+            return false
+        }
 
+
+    }
 	collision(playerInfo) {
 		// console.log('collision', playerInfo);
 		// get the middle of the obstacle 
@@ -31,6 +40,7 @@ class Obstacle {
 		// dist(x1, y1, x2, y2);
         let bottomPlayer = (playerInfo.y + playerInfo.height) 
         let obstacleHeight = (height - this.height)
+        let obstacleJumped = (height - (this.height/2))
 		if ((dist(obstacleX, obstacleY, playerX, playerY) < 25) && (bottomPlayer > obstacleHeight) && (this.y > obstacleHeight)) {
 			 // here we have a collision
              game.player.health -= 10;
