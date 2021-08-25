@@ -11,6 +11,7 @@ class Game {
 	setup() {
 		this.background = new Background();
 		this.player = new Player();
+        this.stopwatch = new Stopwatch ();
         
 	}
 
@@ -19,6 +20,7 @@ class Game {
 		this.playerImage = loadImage('assets/player/bb8.gif');
 		this.coinImage = loadImage(' assets/coins/tile000.png');
         this.shellImage = loadImage('assets/shells/8bit-red-shell.png');
+        this.stopwatch.start();     
 	}
 
 	draw() {
@@ -52,6 +54,7 @@ class Game {
 			}
 		})
 	}
+    
     gamefinished(){
         if (this.player.health > 0){
             return false

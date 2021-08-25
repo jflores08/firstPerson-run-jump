@@ -1,13 +1,13 @@
 class Player {
 
 	constructor() {
-		this.gravity = 0.2;
+		this.gravity = 0.9;
 		this.velocity = 0;
 		this.width = 100;
 		this.height = 140;
 		this.x = 250;
 		this.y = height - this.height;
-        this.health = 100;
+        this.health = 100
 	}
 
 	draw() {
@@ -27,6 +27,6 @@ class Player {
 
 	jump() {
 		console.log('jump', this.velocity);
-		this.velocity = - 12;
+		this.velocity = - 30;
 	}
 }

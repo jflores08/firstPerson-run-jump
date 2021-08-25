@@ -12,11 +12,26 @@
     <title>Jump and Run game</title>
   </head>
   <body>
-    <h1>Jump and run game</h1><figcaption></figcaption>
+    <h1>Jump Game
+        <!-- <div class = 'health'>Health:</div> <div class = 'health' id = healthNum> 10</div>
+         <div class = 'timer' id =timer>Timer :</div><div class = 'timer' id =timerNum>0</div> -->
+        </h1><div id="score">
+            <h2>Score</h2>
+            <p>Health: <span id="healthNum">0</span></p>
+            <p>Timer : <span id="timerNum"> <div>
+                <output id="display-area">00:00:00.000</output>
+            </div>
+            <div>
+                <!-- <button id="toggle-button" onClick="start()">Start</button>
+                <button id="toggle-button" onClick="stop()">Stop</button>
+                <button id="reset-button">Reset</button> -->
+            </div></span></p>
+          </div><figcaption></figcaption>
     <script src="./js/obstacle.js"></script>
     <script src="./js/background.js"></script>
     <script src="./js/player.js"></script>
     <script src="./js/game.js"></script>
     <script src="./js/main.js"></script>
+    <script src='./js/stopwatch.js'></script>
   </body>
 </html>

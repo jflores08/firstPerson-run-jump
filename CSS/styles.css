@@ -1,0 +1,13 @@
+.health{
+    color: red;
+
+}
+#score {
+    background-color: rgba(144, 227, 238, 0.8);
+    border-radius: 4px;
+    font-size: 20px;
+    font-family: Arial;
+    width: 100px;
+    padding: 2px;
+    margin-left: 0%;
+  }
