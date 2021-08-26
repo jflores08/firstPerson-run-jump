@@ -1,13 +1,13 @@
 class Background {
     constructor() {
-        this.x = 0
+        this.x = (0)
     }
     draw() {
         // console.log('this is the background drawing');
         // console.log(width, height);
         // game.backgroundImages {
         //  console.log('bckgrnd drawing ',game.backgroundImages)
-         image(game.backgroundImages, this.x, 0, 600, 600);
+         image(game.backgroundImages, this.x, 0, width, height);
          // here we need to add a second image - 
          
             // if the image moves out of the screen then we need to reset it

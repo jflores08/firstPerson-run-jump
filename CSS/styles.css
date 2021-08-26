@@ -1,3 +1,16 @@
+/*set{
+    background-image: url('../assets/8BitBackground.png');
+    width: 1800;
+    height:1000;
+    object-fit: fill;
+}*/
+h1{
+    background-color: rgba(243, 120, 120, 0.8);
+
+}
+h2{
+    
+}
 #health{
     color: red;
     width: 200px;
@@ -18,7 +31,33 @@
     padding: 2px;
     margin-left: 75%;
   }
-  #buttons{
+  #reset-button{
     padding: 2px;
-    margin-left: 75%;
+    width: 80px;
+    height: 40px;
+    font-size: 20px;
+    border: red;
+  }
+  body{
+      /*margin-left: 50px;*/
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      /* background-color: #c8dad3; */
+      background-image: url('../assets/8BitBackground.png');
+  }
+
+
+
+
+
+
+
+
+
+ /* img {
+    width: 200px;
+    height: 300px;
+    object-fit: fill;
   }

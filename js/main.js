@@ -6,7 +6,7 @@ function preload() {
 
 }
 function setup() {
-	createCanvas(600, 600);
+	createCanvas(1000, 600);
 	game.setup();
 }
 function draw() {
@@ -14,8 +14,11 @@ function draw() {
 	game.draw();
 }
 
-function keyPressed() {
-	if (keyCode === 32) {
-		game.player.jump();
-	}
-}
+    function keyPressed() {
+
+	    if (keyCode === 32 && !game.player.inAirValue){
+            console.log('can jump');
+		    game.player.jump();
+	    }
+    }
+   

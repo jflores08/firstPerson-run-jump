@@ -3,17 +3,17 @@ class Obstacle {
 		this.image = image;
 		this.y = 300;
 		// this.x = (Math.random() * height) / 2.5;
-        this.x = 290;
+        this.x = 490;
 		this.width = 20;
 		this.height = 20;
 	}
     
     draw() {
         this.y++/2;
-        this.x-= 0.5;
+        this.x-= 0.3;
         this.width++/2;
         this.height++/2;
-		image(this.image, this.x, this.y, this.width, this.height);
+		image(this.image, this.x, this.y, (this.width/1.5), (this.height/1.5));
         
 	}
     positionSwitch(){
@@ -41,7 +41,7 @@ class Obstacle {
         let bottomPlayer = (playerInfo.y + playerInfo.height) 
         let obstacleHeight = (height - this.height)
         let obstacleJumped = (height - (this.height/2))
-		if ((dist(obstacleX, obstacleY, playerX, playerY) < 25) && (bottomPlayer > obstacleHeight) && (this.y > obstacleHeight)) {
+		if ((dist(obstacleX, obstacleY, playerX, playerY) < 35) && (bottomPlayer > obstacleHeight) && (this.y > obstacleHeight)) {
 			 // here we have a collision
              game.player.health -= 10;
              console.log(game.player.health);
@@ -52,3 +52,4 @@ class Obstacle {
 		}
 	}
 }
+

@@ -1,13 +1,14 @@
 class Player {
 
 	constructor() {
-		this.gravity = 0.9;
+		this.gravity = 0.2;
 		this.velocity = 0;
 		this.width = 100;
 		this.height = 140;
-		this.x = 250;
+		this.x = 450;
 		this.y = height - this.height;
         this.health = 100
+        this.inAirValue;
 	}
 
 	draw() {
@@ -21,12 +22,21 @@ class Player {
 			this.y = height - this.height;
 		}
 		image(game.playerImage, this.x, this.y, this.width, this.height);
-
+        
+        this.inAir();
 	}
     
+    inAir(){
+        if (this.y < height - this.height){
+            this.inAirValue = true
+        }else{
+            this.inAirValue = false
+        }
+    }
+
 
 	jump() {
 		console.log('jump', this.velocity);
-		this.velocity = - 30;
+		this.velocity = - 12;
 	}
 }
