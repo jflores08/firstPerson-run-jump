@@ -15,8 +15,12 @@ function draw() {
 }
 
     function keyPressed() {
-        if (keyCode){}
-        if (keyCode){}
+        if (keyCode == 37){
+            game.player.x = game.player.x - game.player.width
+        }
+        if (keyCode == 39){
+            game.player.x = game.player.x + game.player.width
+        }
         if (game.preStartScreen){
             if (keyCode === 32){
                 game.preStartScreen = false;

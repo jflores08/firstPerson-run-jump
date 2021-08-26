@@ -1,5 +1,5 @@
 class Obstacle {
-	constructor(image) {
+	constructor(image, shellSpeed) {
 		this.image = image;
 		this.y = 300;
 		// this.x = (Math.random() * height) / 2.5;
@@ -7,13 +7,25 @@ class Obstacle {
 		this.width = 20;
 		this.height = 20;
 		this.Rand = Math.random()
-		this.shellSpeed = 0.001
+		this.Rand2 = Math.random()
+		this.Rand3 = Math.random()
+		this.sign = true
+		this.shellSpeed = shellSpeed
 	}
     
     draw() {
-		
+		if(this.Rand3 > 0.5){
+			this.sign = true
+		}else{
+			this.sign = false
+		}
+		console.log(this.sign)
         this.y++/this.shellSpeed;
-        this.x-= this.Rand;
+		if (this.sign){
+        	this.x-= (this.Rand + this.Rand2);
+		}else{
+			this.x-= (this.Rand - this.Rand2);
+		}
         this.width++/2;
         this.height++/2;
 		image(this.image, this.x, this.y, (this.width/1.5), (this.height/1.5));
@@ -44,7 +56,7 @@ class Obstacle {
         let bottomPlayer = (playerInfo.y + playerInfo.height) 
         let obstacleHeight = (height - this.height)
         let obstacleJumped = (height - (this.height/2))
-		if ((dist(obstacleX, obstacleY, playerX, playerY) < 35) && (bottomPlayer > obstacleHeight) && (this.y > obstacleHeight)) {
+		if ((dist(obstacleX, obstacleY, playerX, playerY) < 60) && (bottomPlayer > obstacleHeight) && (this.y > obstacleHeight)) {
 			 // here we have a collision
              game.player.health -= 10;
              console.log(game.player.health);

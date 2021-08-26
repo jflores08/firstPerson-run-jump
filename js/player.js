@@ -21,6 +21,14 @@ class Player {
 			// then he should be set to it's starting position
 			this.y = height - this.height;
 		}
+		// if the bb8 moves too far Left
+		if (this.x <= 0 + (this.width * 2.5)) {
+			this.x = (this.width * 2.5);
+		}
+		// if the bb8 moves too far Right
+		if (this.x >= width - (this.width * 3.5)) {
+			this.x = (width - (this.width * 3.5));
+		}
 		image(game.playerImage, this.x, this.y, this.width, this.height);
         
         this.inAir();
