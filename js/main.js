@@ -15,6 +15,8 @@ function draw() {
 }
 
     function keyPressed() {
+        if (keyCode){}
+        if (keyCode){}
         if (game.preStartScreen){
             if (keyCode === 32){
                 game.preStartScreen = false;

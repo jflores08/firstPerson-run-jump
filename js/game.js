@@ -7,6 +7,8 @@ class Game {
 		this.backgroundImages = null;
 		this.playerImage = null;
 		this.obstacles = [];
+        this.shellNum = 1000
+        this.shellSpeed = 0.003
 	}
 
 	setup() {
@@ -52,7 +54,7 @@ class Game {
 		    // this draws the background
 		    this.background.draw();
          //Timer var
-		    const timer = `${round(millis()/1000)}` + ':' + `${round(millis())}`
+		    const timer = `${round(millis()/this.shellNum)}` + ':' + `${round(millis())}`
             // const timerText = text( `${timer} seconds have gone by!`, 350, height/5);
             // const gameOverText = 'text(`BB8 survived for ${timer}`, 350, height/2.5);'
        
@@ -70,8 +72,9 @@ class Game {
             textSize(26);
             fill(205, 0, 0);
           
-            text(`Health : ${this.player.health}`, (width - 350), (height - 50));
-            text( `${timer} seconds have gone by!`, 350, height/5);
+            text(`Health : ${this.player.health}`, (width - 320), 100);
+            text( `${timer}`, 450, 235);
+            text(`seconds have gone by!`, 370, 262)
              // textsize(32)
             // text(this.player.health, 30, 30)
             // fill(black)
@@ -79,10 +82,10 @@ class Game {
          
          
             //Makes random framecount number
-            const rand = Math.floor((random()*10000)/7)  
+            const rand = Math.floor((random()*10000)/20)  
             // this will add shells to the obstacles array  
             if (frameCount % rand === 0) {
-             this.obstacles.push(new Obstacle(this.shellImage));
+             this.obstacles.push(new Obstacle(this.shellImage, this.shellSpeed));
              console.log('health :' + this.player.health);}
 
 		    // we need to iterate over the obstacles array now and call for every object 

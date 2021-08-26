@@ -6,11 +6,14 @@ class Obstacle {
         this.x = 490;
 		this.width = 20;
 		this.height = 20;
+		this.Rand = Math.random()
+		this.shellSpeed = 0.001
 	}
     
     draw() {
-        this.y++/2;
-        this.x-= 0.3;
+		
+        this.y++/this.shellSpeed;
+        this.x-= this.Rand;
         this.width++/2;
         this.height++/2;
 		image(this.image, this.x, this.y, (this.width/1.5), (this.height/1.5));
