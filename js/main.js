@@ -15,6 +15,11 @@ function draw() {
 }
 
     function keyPressed() {
+        if (game.preStartScreen){
+            if (keyCode === 32){
+                game.preStartScreen = false;
+            }
+        }
 
 	    if (keyCode === 32 && !game.player.inAirValue){
             console.log('can jump');
