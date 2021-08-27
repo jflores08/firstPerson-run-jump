@@ -149,10 +149,16 @@ class Game {
                 this.player.draw();
             }
           //Draws Health  and Timer
-            textSize(26);
+            
+          textSize(26);
+            const healthPercent = (this.player.health) / 100
+            fill(255, 255 , 255)
+            rect(685, 70,130,30)
             fill(205, 0, 0);
-          
-            text(`Health : ${this.player.health}`, (width - 320), 100);
+            rect(685,  70, (130 * healthPercent), 30)
+            fill(205, 0, 0);
+            text(`Health : ${this.player.health}`, (width - 320), 50);
+
             text( `${timer}`, 450, 235);
             text(`seconds have gone by!`, 370, 262)
              // textsize(32)
