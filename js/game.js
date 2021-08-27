@@ -4,10 +4,13 @@ class Game {
 		// this.background = new Background();
 		// this.player = new Player();
         this.preStartScreen = true
+        this.easy = false
+        this.Medium = false
+        this.Hard = false
 		this.backgroundImages = null;
 		this.playerImage = null;
 		this.obstacles = [];
-        this.shellNum = 1000
+        this.shellNum = 30
         this.shellSpeed = 0.003
 	}
 
@@ -15,7 +18,10 @@ class Game {
 		this.background = new Background();
 		this.player = new Player();
         this.stopwatch = new Stopwatch ();
-        
+        this.difficulty = new Difficulty();
+        this.difficulty.easy = false
+        this.difficulty.Medium = false
+        this.difficulty.Hard = false
 	}
 
 	preloadGame() {
@@ -33,44 +39,80 @@ class Game {
         fill(204, 102, 0);
         rect(0,0,width,height)
 
+    
         //key label rectangles
-        rect(420,375, 120, 35)
-        rect(120,205,132,35)
-        rect(650,205,150,35)
+        rect(140,295, 120, 35)
+        rect(140,195,132,35)
+        rect(140,245,150,35)
+
+
         // key diagram
         //U&D Arrows keys
-        square(470, 210, 30);
-        square(470, 250, 30);
+        square(190, 360, 30);
+        square(190, 400, 30);
         //L&R Arrows keys
         fill (255,255,255)
-        square(430, 250, 30);
-        square(510, 250, 30);
+        square(150, 400, 30);
+        square(230, 400, 30);
         //Space key
-        rect(390, 300, 200, 30);
+        rect(110, 450, 200, 30);
         //Arrowkey labels
         fill(0, 0, 0);
-        text('L', 437, 275);
-        text('R', 515, 275);
+        text('L', 157, 425);
+        text('R', 235, 425);
         //Spacekey label
-        text('Spacebar', 430, 325)
+        text('Spacebar', 150, 475)
+
+        // Difficulty
+        // Difficulty Number keys
+        fill(0, 0, 0);
+        text('Press:', 580, 200);
+        fill (255,255,255)
+        square(600, 220, 30);
+        square(600, 270, 30);
+        square(600, 320, 30);
+        fill(0, 0, 0);
+        text('1', 607, 245);
+        text('2', 607, 295);
+        text('3', 607, 345);
+        
+        //Difficulty ratings
+        text('Easy', 707, 245);
+        text('Medium', 707, 295);
+        text('Hard', 707, 345);
+
+
        //Start key 
         fill (255,255,255)
-        rect(330,475, 315, 35);  
+        rect(330,525, 315, 35);  
         fill(0, 0, 0);
-        text('Press spacebar to start', 350, 500);
+        text('Press spacebar to start', 350, 550);
 
             textSize(26);
             fill(0, 0, 0);
             // text('Surrvive and avoid the shells!',350, (height/5))
             text('BB8 has foound himself in a haunted house with a dimentional rift. ',150, 70)
-            text('Surrvive and avoid the shells!', 350, 150)
-            text('Press Spacebar to jump',350, 400)
-            text('Press Left_Arrow to move left', 50, 230)
-            text('Press Right_Arrow to move right', 580, 230)
+            text('Surrvive and avoid the shells!', 350, 120)
+            //Controls
+            text('Controls:', 155, 180)
+            text('Press Spacebar to jump',70, 320)
+            text('Press Left_Arrow to move left', 70, 220)
+            text('Press Right_Arrow to move right', 70, 270)
+            text('Difficulty:', 750, 180)
             
             
-        
-
+        if (this.easy){
+            game.shellNum = 25
+            game.shellSpeed = 0.09
+        }
+        if (this.Medium){
+            game.shellNum = 30
+            game.shellSpeed = 0.001
+        }
+        if (this.Hard){
+            game.shellNum = 40
+            game.shellSpeed = 0.00001
+        }
 
 
 
@@ -82,7 +124,7 @@ class Game {
 		    // this draws the background
 		    this.background.draw();
          //Timer var
-		    const timer = `${round(millis()/this.shellNum)}` + ':' + `${round(millis())}`
+		    const timer = `${(round(millis()/1000))}` + ':' + `${round(millis())}`
             // const timerText = text( `${timer} seconds have gone by!`, 350, height/5);
             // const gameOverText = 'text(`BB8 survived for ${timer}`, 350, height/2.5);'
        
@@ -110,12 +152,12 @@ class Game {
          
          
             //Makes random framecount number
-            const rand = Math.floor((random()*10000)/20)  
+            const rand = Math.floor((random()*10000)/this.shellNum)  
             // this will add shells to the obstacles array  
             if (frameCount % rand === 0) {
              this.obstacles.push(new Obstacle(this.shellImage, this.shellSpeed));
              console.log('health :' + this.player.health);}
-
+            console.log(this.shellNum)
 		    // we need to iterate over the obstacles array now and call for every object 
 		        // inside the draw function
                 

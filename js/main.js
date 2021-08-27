@@ -25,11 +25,24 @@ function draw() {
             if (keyCode === 32){
                 game.preStartScreen = false;
             }
+            if (keyCode === 49){
+                game.easy = true;
+            }
+    
+            if (keyCode === 50) {
+                game.Medium = true;
+            }
+    
+            if (keyCode === 51) {
+                game.Hard = true;
+            }
         }
 
 	    if (keyCode === 32 && !game.player.inAirValue){
             console.log('can jump');
 		    game.player.jump();
 	    }
+
+        
     }
    

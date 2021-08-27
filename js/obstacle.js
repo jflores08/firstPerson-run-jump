@@ -19,7 +19,7 @@ class Obstacle {
 		}else{
 			this.sign = false
 		}
-		console.log(this.sign)
+		// console.log(this.sign)
         this.y++/this.shellSpeed;
 		if (this.sign){
         	this.x-= (this.Rand + this.Rand2);
