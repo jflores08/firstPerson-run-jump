@@ -12,6 +12,7 @@ class Game {
 		this.obstacles = [];
         this.shellNum = 30
         this.shellSpeed = 0.003
+        
 	}
 
 	setup() {
@@ -91,7 +92,7 @@ class Game {
             textSize(26);
             fill(0, 0, 0);
             // text('Surrvive and avoid the shells!',350, (height/5))
-            text('BB8 has foound himself in a haunted house with a dimentional rift. ',150, 70)
+            text('BB8 has found himself in a haunted house with a dimentional rift. ',150, 70)
             text('Surrvive and avoid the shells!', 350, 120)
             //Controls
             text('Controls:', 155, 180)
@@ -124,7 +125,9 @@ class Game {
 		    // this draws the background
 		    this.background.draw();
          //Timer var
-		    const timer = `${(round(millis()/1000))}` + ':' + `${round(millis())}`
+            const miliSecs = `${round(millis())}`
+            const secs = round(miliSecs/1000)
+		    const timer = `${secs}` + ':' + `${miliSecs}`
             // const timerText = text( `${timer} seconds have gone by!`, 350, height/5);
             // const gameOverText = 'text(`BB8 survived for ${timer}`, 350, height/2.5);'
        
@@ -137,6 +140,13 @@ class Game {
                 
                 this.deadBB8Image.draw();
        
+            }
+            if(this.secs > 120){
+                noLoop();
+                rect(345,(height/2.5)-20,400,20)
+                fill(255, 255, 255);
+                text(`Congrats, BB8 survived and broke through the dimensional barrier :)`, 350, height/2.5);
+                this.player.draw();
             }
           //Draws Health  and Timer
             textSize(26);
