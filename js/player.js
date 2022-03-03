@@ -8,6 +8,7 @@ class Player {
 		this.x = 450;
 		this.y = height - this.height;
         this.health = 100
+		this.portalGunCharge = 0
         this.inAirValue;
 	}
 

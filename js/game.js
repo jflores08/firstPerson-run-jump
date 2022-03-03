@@ -10,8 +10,11 @@ class Game {
 		this.backgroundImages = null;
 		this.playerImage = null;
 		this.obstacles = [];
+        this.targets = [];
         this.shellNum = 30
+        this.targetNum = 10
         this.shellSpeed = 0.003
+        this.targetSpeed = 0.003
         
 	}
 
@@ -31,6 +34,7 @@ class Game {
 		this.coinImage = loadImage(' assets/coins/tile000.png');
         this.shellImage = loadImage('assets/shells/8bit-red-shell.png');
         this.deadBB8Image = loadImage('assets/dead-icon.png');
+        this.portalGunImage = loadImage('assets/Portal/Portal_Gun2.png');
         // this.stopwatch.start();     
 	}
     
@@ -141,16 +145,34 @@ class Game {
                 this.deadBB8Image.draw();
        
             }
-            if(this.secs > 120){
+            else if(this.player.portalGunCharge === 100){
                 noLoop();
-                rect(345,(height/2.5)-20,400,20)
-                fill(255, 255, 255);
-                text(`Congrats, BB8 survived and broke through the dimensional barrier :)`, 350, height/2.5);
-                this.player.draw();
+                rect(40,(height/2.5)-20,800,40)
+                 fill(255, 255, 255);
+                 text(`Congrats, BB8 was able to open a portal back to his dimension :)`, 40, height/2.5)-20;
+                 this.player.draw(); 
             }
-          //Draws Health  and Timer
+            
+            // (this.secs > 120){
+            //     noLoop();
+            //     rect(345,(height/2.5)-20,400,20)
+            //     fill(255, 255, 255);
+            //     text(`Congrats, BB8 survived and broke through the dimensional barrier :)`, 350, height/2.5);
+            //     this.player.draw();
+            // }
+
+
+          //Draws Target Bar, Health Bar, and Timer
             
           textSize(26);
+            const TargetPercent = (this.player.portalGunCharge) / 100
+            fill(255, 255 , 255)
+            rect(140, 70,130,30)
+            fill(25, 236, 18);
+            rect(140,  70, (130 * TargetPercent), 30)
+            fill(25, 236, 18);
+            text(`Portal Gun Charge : ${this.player.portalGunCharge}`, (140), 50);
+          
             const healthPercent = (this.player.health) / 100
             fill(255, 255 , 255)
             rect(685, 70,130,30)
@@ -225,11 +247,70 @@ class Game {
 				    return true
 			    }
 		    })
+
+              //Makes another random framecount number
+              const rand2 = Math.floor((random()*10000)/this.targetNum)  
+              // this will add poratl guns to the targets array  
+              if (frameCount % rand2 === 0) {
+               this.targets.push(new Target(this.portalGunImage, this.targetSpeed));
+               console.log('Portal Charge :' + this.player.portalGunCharge);}
+              console.log(this.targetNum)
+              // we need to iterate over the targets array now and call for every object 
+                  // inside the draw function
+                  
+                 
+                      this.targets.forEach(function (target) {
+                          target.draw();
+                          target.drawn = true
+                      })
+                      this.player.draw();
+  
+                      // if (target.drawn === true){
+                      //     if (target.positionSwitch){
+                      //         this.player.draw();     
+                      //         this.target.forEach(function (target) {
+                          
+                      //             target.draw();
+                      //         })
+                      //     }
+                      // } 
+                      
+          
+                      //     }else{
+                      //     this.player.draw();
+                      // this.targets.forEach(function (target) {
+                              
+                      //         target.draw();
+              
+                      //     })
+                      // }
+                      
+                       
+                  
+              
+               // this draws the player
+                  
+  
+  
+                  // }else{ 
+                      
+              
+                  
+              // }
+              this.targets = this.targets.filter((target) => {
+              // console.log(this);
+              // if we have a collision or the obstacle moves out of the screen * target.y > height *
+                  if (target.collision(this.player) || (target.y + target.hieght) < 0) {
+                      return false
+                  } else {
+                      return true
+                  }
+              })
         }
 	}
     
     gamefinished(){
-        if (this.player.health > 0){
+        if ((this.player.health > 0) || (this.player.portalGunCharge < 100)){
             return false
         } else{
             return true
