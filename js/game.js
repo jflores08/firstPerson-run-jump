@@ -4,6 +4,8 @@ class Game {
 		// this.background = new Background();
 		// this.player = new Player();
         this.preStartScreen = true
+        this.playerGameEnd = true
+        this.gameClock = true
         this.easy = false
         this.Medium = false
         this.Hard = false
@@ -20,6 +22,7 @@ class Game {
 
 	setup() {
 		this.background = new Background();
+        this.portal = new Portal();
 		this.player = new Player();
         this.stopwatch = new Stopwatch ();
         this.difficulty = new Difficulty();
@@ -35,12 +38,13 @@ class Game {
         this.shellImage = loadImage('assets/shells/8bit-red-shell.png');
         this.deadBB8Image = loadImage('assets/dead-icon.png');
         this.portalGunImage = loadImage('assets/Portal/Portal_Gun2.png');
+        this.portalImage = loadImage('assets/Portal/Portal-1.png');
         // this.stopwatch.start();     
 	}
     
 	draw() {
      if (this.preStartScreen == true){
-         //startScreen Backgroung
+         //startScreen Background
         fill(204, 102, 0);
         rect(0,0,width,height)
 
@@ -138,11 +142,14 @@ class Game {
             //Sets End Game condition
             if(this.player.health === 0){
                 noLoop();
+                this.gameClock = false
                 rect(345,(height/2.5)-20,315,20)
                 fill(255, 255, 255);
                 text(`BB8 survived for ${timer}`, 350, height/2.5);
-                
-                this.deadBB8Image.draw();
+                // this.portalImage.draw();
+                this.playerGameEnd = false
+                this.portal.draw();
+                // this.deadBB8Image.draw();
        
             }
             else if(this.player.portalGunCharge === 100){
@@ -150,7 +157,11 @@ class Game {
                 rect(40,(height/2.5)-20,800,40)
                  fill(255, 255, 255);
                  text(`Congrats, BB8 was able to open a portal back to his dimension :)`, 40, height/2.5)-20;
-                 this.player.draw(); 
+                 this.playerGameEnd = false
+                 this.portal.draw();
+                 
+                 
+                 
             }
             
             // (this.secs > 120){
@@ -181,8 +192,8 @@ class Game {
             fill(205, 0, 0);
             text(`Health : ${this.player.health}`, (width - 320), 50);
 
-            text( `${timer}`, 450, 235);
-            text(`seconds have gone by!`, 370, 262)
+            this.gameClock && (text( `${timer}`, 450, 235));
+            this.gameClock && (text(`seconds have gone by!`, 370, 262));
              // textsize(32)
             // text(this.player.health, 30, 30)
             // fill(black)
@@ -204,7 +215,7 @@ class Game {
                         obstacle.draw();
                         obstacle.drawn = true
                     })
-                    this.player.draw();
+                    this.playerGameEnd && (this.player.draw());
 
                     // if (obstacle.drawn === true){
                     //     if (obstacle.positionSwitch){
@@ -263,7 +274,7 @@ class Game {
                           target.draw();
                           target.drawn = true
                       })
-                      this.player.draw();
+                      this.playerGameEnd && (this.player.draw());
   
                       // if (target.drawn === true){
                       //     if (target.positionSwitch){
