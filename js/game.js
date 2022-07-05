@@ -4,7 +4,8 @@ class Game {
 		// this.background = new Background();
 		// this.player = new Player();
         this.preStartScreen = true
-        this.playerGameEnd = true
+        this.playerEndShow = true
+        this.playerShow = true
         this.gameClock = true
         this.easy = false
         this.Medium = false
@@ -17,6 +18,8 @@ class Game {
         this.targetNum = 10
         this.shellSpeed = 0.003
         this.targetSpeed = 0.003
+        this.endGame = false
+        this.playerEscape = [];
         
 	}
 
@@ -38,7 +41,7 @@ class Game {
         this.shellImage = loadImage('assets/shells/8bit-red-shell.png');
         this.deadBB8Image = loadImage('assets/dead-icon.png');
         this.portalGunImage = loadImage('assets/Portal/Portal_Gun2.png');
-        this.portalImage = loadImage('assets/Portal/Portal-1.png');
+        this.portalImage = loadImage('assets/Portal/Portal-2.png');
         // this.stopwatch.start();     
 	}
     
@@ -145,23 +148,83 @@ class Game {
                 this.gameClock = false
                 rect(345,(height/2.5)-20,315,20)
                 fill(255, 255, 255);
+                // 
                 text(`BB8 survived for ${timer}`, 350, height/2.5);
-                // this.portalImage.draw();
-                this.playerGameEnd = false
-                this.portal.draw();
+               
+
+                // this.obstacles = [];
+                // this.targets = [];
+                // this.playerShow = false
+                // this.endGame = true
+                // ;
+                
+                // // this draws the portal
+                // this.portal.draw()
+
+                // //this draws the player
+                // this.playerEscape.forEach(function (player) {
+                //     player.draw();
+                //     player.drawn = true
+                // })
+                // this.playerEndShow && (this.player.draw(this.endGame) );
+                
+                
+
+                // this.playerEscape.push(new Player)
+                // this.playerEscape = this.playerEscape.filter((player) => {
+                //     if (player.collision(this.portal) ) {
+                //         return this.playerShow = false
+                //     } else {
+                //         return this.playerShow = true
+                //     }
+                // })
+                
+
+                
+            
                 // this.deadBB8Image.draw();
        
             }
             else if(this.player.portalGunCharge === 100){
-                noLoop();
-                rect(40,(height/2.5)-20,800,40)
-                 fill(255, 255, 255);
-                 text(`Congrats, BB8 was able to open a portal back to his dimension :)`, 40, height/2.5)-20;
-                 this.playerGameEnd = false
-                 this.portal.draw();
-                 
-                 
-                 
+                // noLoop();
+                // rect(40,(height/2.5)-20,800,40)
+                //  fill(255, 255, 255);
+                //  text(`Congrats, BB8 was able to open a portal back to his dimension :)`, 40, height/2.5)-20;
+  
+                
+                rect(345,(height/2.5)-20,335,20)
+                fill(255, 255, 255);
+                text(`BB8 survived and Escaped!!`, 350, height/2.5);
+                // this.portalImage.draw();
+                this.gameClock = false
+                this.obstacles = [];
+                this.targets = [];
+                this.playerShow = false
+                this.endGame = true
+                ;
+                
+                // this draws the portal
+                this.portal.draw()
+
+                //this draws the player
+                this.playerEscape.forEach(function (player) {
+                    player.draw();
+                    player.drawn = true
+                })
+                this.playerEndShow && (this.player.draw(this.endGame) );
+                
+                
+
+                
+
+                // //If the player meets the portal
+                // if (this.portal.collision(this.playerGameEnd)) {
+                //     return console.log('BB8 Escaped !!');
+                //     this.playerEndShow = false
+                    
+                // } else {
+                //     return console.log('BB8 missed !!')
+                // }
             }
             
             // (this.secs > 120){
@@ -206,7 +269,7 @@ class Game {
             if (frameCount % rand === 0) {
              this.obstacles.push(new Obstacle(this.shellImage, this.shellSpeed));
              console.log('health :' + this.player.health);}
-            console.log(this.shellNum)
+            // console.log(this.shellNum)
 		    // we need to iterate over the obstacles array now and call for every object 
 		        // inside the draw function
                 
@@ -215,7 +278,7 @@ class Game {
                         obstacle.draw();
                         obstacle.drawn = true
                     })
-                    this.playerGameEnd && (this.player.draw());
+                    this.playerShow && (this.player.draw());
 
                     // if (obstacle.drawn === true){
                     //     if (obstacle.positionSwitch){
@@ -252,7 +315,7 @@ class Game {
 		    this.obstacles = this.obstacles.filter((obstacle) => {
 			// console.log(this);
 			// if we have a collision or the obstacle moves out of the screen 
-			    if (obstacle.collision(this.player) || (obstacle.y + obstacle.hieght) < 0) {
+			    if (obstacle.collision(this.player) || (obstacle.y + obstacle.hieght) > 600) {
 				    return false
 			    } else {
 				    return true
@@ -265,7 +328,7 @@ class Game {
               if (frameCount % rand2 === 0) {
                this.targets.push(new Target(this.portalGunImage, this.targetSpeed));
                console.log('Portal Charge :' + this.player.portalGunCharge);}
-              console.log(this.targetNum)
+            //   console.log(this.targetNum)
               // we need to iterate over the targets array now and call for every object 
                   // inside the draw function
                   
@@ -274,7 +337,7 @@ class Game {
                           target.draw();
                           target.drawn = true
                       })
-                      this.playerGameEnd && (this.player.draw());
+                      this.playerShow && (this.player.draw());
   
                       // if (target.drawn === true){
                       //     if (target.positionSwitch){

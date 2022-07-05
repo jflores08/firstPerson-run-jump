@@ -1,11 +1,11 @@
-class Target {
-	constructor(image, targetSpeed) {
-		this.image = image;
+class EndPortal {
+	constructor( targetSpeed) {
+		
 		this.y = 300;
 		// this.x = (Math.random() * height) / 2.5;
-        this.x = 490;
-		this.width = 0.5;
-		this.height = 0.5;
+        this.x = 430;
+		this.width = 100;
+		this.height = 100;
 		this.Rand = Math.random()
 		this.Rand2 = Math.random()
 		this.Rand3 = Math.random()
@@ -26,9 +26,9 @@ class Target {
 		}else{
 			this.x-= (this.Rand - this.Rand2);
 		}
-        this.width++/3;
-        this.height++/3;
-		image(this.image, this.x, this.y, (this.width/1.5), (this.height/1.5));
+        // this.width++/3;
+        // this.height++/3;
+		image(game.portalImage, 480, 300, (this.width/1.5), (this.height/1.5));
         
 	}
     positionSwitch(){
@@ -42,6 +42,7 @@ class Target {
 
     }
 	collision(playerInfo) {
+        
 		// console.log('collision', playerInfo);
 		// get the middle of the obstacle 
 		let targetX = this.x + this.width / 2;
